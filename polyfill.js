@@ -3,11 +3,40 @@
  * @copyright 2011 zencodez.net
  * @license http://creativecommons.org/licenses/by-sa/3.0/
  * @package Polyfill
- * @version 1.0 - 2011-03-13
+ * @version 1.1 - 2011-03-14
  *
  * This script requires Modernizr and Yepnope
  */
 if (window.Modernizr && window.yepnope) {
+
+	Modernizr.addTest('classlist', function () {
+		return "classList" in document.createElement("a");
+	});
+	
+	// https://github.com/Modernizr/Modernizr/pull/174
+	Modernizr.addTest('mathml', function () {
+        var mml_container = document.createElementNS("http://www.w3.org/1998/Math/MathML", "math");
+        var mml_el = mml_container.isDefaultNamespace(document.namespaceURI);
+        return !!document.createElementNS && !!mml_container && !!mml_el;
+    }
+	
+	
+	// ClassList
+	yepnope({
+		test: Modernizr.classlist,
+		nope: 'classList.min.js'
+	});
+	
+	// MathML
+	yepnope({
+		test: Modernizr.mathml,
+		nope: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+	});
+	
+	// CSS Selectors
+	yepnope({
+		load: 'ielt9!selectivizr.js'
+	});
 
 	// CSS3 Finalize
 	// RGBA, Opacity and some Gradient
@@ -96,11 +125,12 @@ if (window.Modernizr && window.yepnope) {
 			WebSocket = EasyWebSocket;
 		}
 	}); */
-
+	
+	
+	// svgweb ?
 	// Modernizr.svg
 	// Modernizr.inlinesvg
 	// Modernizr.svgclippaths
 	
-	// Modernizr.localstorage
-	// Modernizr.sessionstorage
+	// webshims ?
 }
