@@ -18,7 +18,7 @@ if (window.Modernizr && window.yepnope) {
         var mml_container = document.createElementNS("http://www.w3.org/1998/Math/MathML", "math");
         var mml_el = mml_container.isDefaultNamespace(document.namespaceURI);
         return !!document.createElementNS && !!mml_container && !!mml_el;
-    }
+    });
 	
 	
 	// ClassList
