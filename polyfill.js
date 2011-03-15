@@ -8,6 +8,11 @@
  * This script requires Modernizr and Yepnope
  */
 if (window.Modernizr && window.yepnope) {
+	// Yepnope prefixes
+	/* yepnope({
+		load: ['yepnope.preload.js', 'yepnope.ie-prefix.js']
+	}); */
+	
 
 	Modernizr.addTest('classlist', function () {
 		return "classList" in document.createElement("a");
